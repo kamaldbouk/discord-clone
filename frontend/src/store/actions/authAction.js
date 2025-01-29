@@ -1,4 +1,5 @@
 import * as api from '../../api';
+import { openAlertMessage } from './alertAction'
 
 export const AuthActions = {
     SET_USER_DETAILS: 'AUTH.SET_USER_DETAILS'
@@ -23,7 +24,7 @@ const login = (userDetails, navigate) => {
         const response = await api.login(userDetails);
         console.log(response);
         if (response.error) {
-
+            dispatch(openAlertMessage(response?.exception?.response.data))
         }
         else {
             const {userDetails} = response?.data;
@@ -39,7 +40,7 @@ const register = (userDetails, navigate) => {
     return async (dispatch) => {
         const response = await api.register(userDetails);
         if (response.error) {
-            console.error("Registration failed", response.exception);
+            dispatch(openAlertMessage(response?.exception?.response.data))
         }
         else {
             const {userDetails} = response?.data;
