@@ -1,4 +1,23 @@
 import { styled } from '@mui/system';
+import FriendsListItem from './FriendsListItem';
+
+const DUMMY_FRIENDS = [
+    {
+        id: 1,
+        username: 'Mark',
+        isOnline: true,
+    },
+    {
+        id: 2,
+        username: 'Anna',
+        isOnline: false,
+    },
+    {
+        id: 3,
+        username: 'John',
+        isOnline: true,
+    },
+]
 
 const MainContainer = styled('div')({
     flexGrow: 1,
@@ -8,8 +27,14 @@ const MainContainer = styled('div')({
 const FriendsList = () => {
     return ( 
         <MainContainer>
-
-
+            {DUMMY_FRIENDS.map(f=>(
+                <FriendsListItem 
+                    username={f.username}
+                    id={f.id}
+                    key={f.id}
+                    isOnline={f.isOnline}
+                />
+            ))}
         </MainContainer>
      );
 }

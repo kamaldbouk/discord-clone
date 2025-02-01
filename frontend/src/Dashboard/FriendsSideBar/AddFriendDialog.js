@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { validateMail } from '../../shared/utils/validators';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 import InputWithLabel from '../../shared/components/InputWithLabel';
+import CustomPrimaryButton from "../../shared/components/CustomPrimaryButton";
 
 const AddFriendDialog = ({
     isDialogOpen,
@@ -40,6 +41,18 @@ const AddFriendDialog = ({
                         placeholder='Enter mail address'
                     />
                 </DialogContent>
+                <DialogActions>
+                    <CustomPrimaryButton 
+                        onClick={handleSendInvitation}
+                        disabled={!isFormValid}
+                        label='Send'
+                        additionalStyles={{
+                            marginLeft: '15px',
+                            marginRight: '15px',
+                            marginBottom: '10px',
+                        }}
+                    />
+                </DialogActions>
             </Dialog>
         </div>
      );
