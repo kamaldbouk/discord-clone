@@ -47,6 +47,20 @@ export const register = async (data) => {
 
 // secure roots (need jwt token)
 
+export const sendFriendInvitation = async (data) => {
+    try {
+        return await apiClient.post('/friend-invitation/invite', data);
+    }
+    catch (exception){
+        checkResponseCode();
+        return {
+            error: true,
+            exception,
+        };
+    }
+};
+
+
 const checkResponseCode = (exception) => {
     const responseCode = exception?.response?.status;
 
