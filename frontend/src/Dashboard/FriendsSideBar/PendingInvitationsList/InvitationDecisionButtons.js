@@ -3,7 +3,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import { IconButton } from '@mui/material';
 import Box from '@mui/material/Box'
 
-const InvitationDecisionButtons = ( disabled, acceptInvitationHandler, rejectInvitationHandler ) => {
+const InvitationDecisionButtons = ( {disabled, acceptInvitationHandler, rejectInvitationHandler }) => {
     return ( 
         <Box sx={{display: 'flex',}}>
             <IconButton 

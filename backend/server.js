@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+const socketServer = require('./socketServer');
 const authRoutes = require('./routes/authRoutes');
 
 // if app is hosted it will use first one else it will use the one in .env
@@ -17,6 +18,7 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 
 const server = http.createServer(app);
+socketServer.registerSocketServer(server);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(()=> {
