@@ -11,6 +11,9 @@ export const getActions = (dispatch) => {
     return {
         sendFriendInvitation: (data, closeDialogHandler) => 
             dispatch(sendFriendInvitation(data, closeDialogHandler)),
+        acceptFriendInvitation: (data) => dispatch(acceptFriendInvitation(data)),
+        rejectFriendInvitation: (data) => dispatch(rejectFriendInvitation(data)),
+
     }
 }
 
@@ -38,3 +41,28 @@ const sendFriendInvitation = (data, closeDialogHandler) => {
     }
 }
 
+const acceptFriendInvitation = (data) => {
+    return async (dispatch) => {
+        const response = await api.acceptFriendInvitation(data);
+
+        if (response.error){
+            dispatch(openAlertMessage(response.exception?.response?.data));
+        }
+        else {
+            dispatch(openAlertMessage('Invitation accepted!'));
+        }
+    }
+}
+
+const rejectFriendInvitation = (data) => {
+    return async (dispatch) => {
+        const response = await api.rejectFriendInvitation(data);
+
+        if (response.error){
+            dispatch(openAlertMessage(response.exception?.response?.data));
+        }
+        else {
+            dispatch(openAlertMessage('Invitation declined!'));
+        }
+    }
+}
