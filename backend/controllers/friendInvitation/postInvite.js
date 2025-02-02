@@ -3,6 +3,7 @@ const FriendInvitation = require('../../models/friendInvitation');
 const friendsUpdates = require('../../SocketHandlers/updates/friends');
 
 const postInvite = async (req, res) => {
+
     const { targetMailAddress } = req.body;
 
     const { userId, mail } = req.user;

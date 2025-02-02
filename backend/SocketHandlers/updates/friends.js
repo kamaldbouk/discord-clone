@@ -9,7 +9,7 @@ const updateFriendsPendingInvitations = async (userId) => {
         }).populate('senderId', '_id username mail');
 
         // find all active connections of specific userId
-        const receiverList = serverStore.getActiveConnections(updateSearchIndex);
+        const receiverList = serverStore.getActiveConnections(userId);
         
         const io = serverStore.getSocketServerInstance();
 
@@ -18,10 +18,14 @@ const updateFriendsPendingInvitations = async (userId) => {
                 pendingInvitations: pendingInvitations ? pendingInvitations : [],
             });
         });
+        
     } catch (err) {
         console.log(err);
     }
+
+    
 };
+
 
 module.exports = {
     updateFriendsPendingInvitations,

@@ -24,6 +24,8 @@ export const setPendingFriendsInvitations = (pendingFriendsInvitations) => {
 
 const sendFriendInvitation = (data, closeDialogHandler) => {
     return async (dispatch) => {
+        console.log("Sending friend request with data:", data);
+
         const response = await api.sendFriendInvitation(data);
 
         if (response.error){
@@ -35,3 +37,4 @@ const sendFriendInvitation = (data, closeDialogHandler) => {
         }
     }
 }
+
