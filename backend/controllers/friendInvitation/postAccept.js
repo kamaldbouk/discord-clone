@@ -1,6 +1,6 @@
 const FriendInvitation = require("../../models/friendInvitation");
 const User = require("../../models/users");
-const friendsUpdates = require("../../socketHandlers/updates/friends");
+const friendsUpdates = require('../../SocketHandlers/updates/friends');
 
 const postAccept = async (req, res) => {
   try {
@@ -28,8 +28,8 @@ const postAccept = async (req, res) => {
     await FriendInvitation.findByIdAndDelete(id);
 
     // update list of the friends if the users are online
-    //friendsUpdates.updateFriends(senderId.toString());
-    //friendsUpdates.updateFriends(receiverId.toString());
+    friendsUpdates.updateFriends(senderId.toString());
+    friendsUpdates.updateFriends(receiverId.toString());
 
     // update list of friends pending invitations
     friendsUpdates.updateFriendsPendingInvitations(receiverId.toString());
