@@ -28,7 +28,7 @@ router.post('/accept',
 router.post('/reject',
     auth,
     validator.body(inviteDecisionSchema),
-    friendInvitationControllers.controllers.postAccept,
+    friendInvitationControllers.controllers.postReject,
 )
 
 module.exports = router;
