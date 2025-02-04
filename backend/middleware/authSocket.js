@@ -12,7 +12,7 @@ const verifyTokenSocket = (socket, next) => {
     }
     catch (err){
         const SocketError = new Error('NOT_AUTHORIZED');
-        return next(socketError);
+        return next(SocketError);
     }
     next();
 }
