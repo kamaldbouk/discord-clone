@@ -30,17 +30,17 @@ const updateChatHistory = async (
     // if yes emit to them update of messages
 
     conversation.participants.forEach((userId) => {
-        const activeConnections = serverStore.getActiveConnections(
-          userId.toString()
-        );
-  
-        activeConnections.forEach((socketId) => {
-          io.to(socketId).emit("direct-chat-history", {
-            messages: conversation.messages,
-            participants: conversation.participants,
-          });
+      const activeConnections = serverStore.getActiveConnections(
+        userId.toString()
+      );
+
+      activeConnections.forEach((socketId) => {
+        io.to(socketId).emit("direct-chat-history", {
+          messages: conversation.messages,
+          participants: conversation.participants,
         });
       });
+    });
   }
 };
 

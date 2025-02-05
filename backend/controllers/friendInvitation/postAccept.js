@@ -1,6 +1,6 @@
 const FriendInvitation = require("../../models/friendInvitation");
-const User = require("../../models/users");
-const friendsUpdates = require('../../SocketHandlers/updates/friends');
+const User = require("../../models/user");
+const friendsUpdates = require("../../socketHandlers/updates/friends");
 
 const postAccept = async (req, res) => {
   try {
