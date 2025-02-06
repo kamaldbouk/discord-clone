@@ -19,6 +19,16 @@ const reducer = (state = initState, action) => {
                 ...state,
                 isUserInRoom: action.isUserInRoom,
                 isUserRoomCreator: action.isUserRoomCreator,
+            };
+        case roomActions.SET_ROOM_DETAILS:
+            return {
+                ...state,
+                roomDetails: action.roomDetails,
+            };
+        case roomActions.SET_ACTIVE_ROOMS:
+            return {
+                ...state,
+                activeRooms: action.activeRooms,
             }
         default:
             return state;
