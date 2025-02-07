@@ -23,12 +23,19 @@ export const setRoomDetails = (roomDetails) => {
   return {
     type: roomActions.SET_ROOM_DETAILS,
     roomDetails,
-  }
-}
+  };
+};
 
 export const setActiveRooms = (activeRooms) => {
   return {
     type: roomActions.SET_ACTIVE_ROOMS,
     activeRooms,
-  }
-}
+  };
+};
+
+export const setLocalStream = (localStream) => {
+  return {
+    type: roomActions.SET_LOCAL_STREAM,
+    localStream,
+  };
+};

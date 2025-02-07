@@ -1,10 +1,14 @@
 import store from "../store/store"
 import { setOpenRoom, setRoomDetails, setActiveRooms } from "../store/actions/roomActions";
 import * as socketConnection from './socketConnection';
+import * as webRTCHandler from './webRTCHandler';
 
 export const createNewRoom = () => {
+  const successCallBackFunc = () => {
     store.dispatch(setOpenRoom(true, true));
     socketConnection.createNewRoom();
+  }  
+  webRTCHandler.getLocalStreamPeview(false, successCallBackFunc);
 };
 
 export const newRoomCreated = (data) => {
