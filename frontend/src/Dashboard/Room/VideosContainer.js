@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/system";
 import { connect } from "react-redux";
-// import Video from "./Video";
+import Video from "./Video";
 
 const MainContainer = styled("div")({
   height: "85%",
@@ -17,13 +17,13 @@ const VideosContainer = ({
 }) => {
   return (
     <MainContainer>
-      {/* <Video
+      <Video
         stream={screenSharingStream ? screenSharingStream : localStream}
         isLocalStream
       />
       {remoteStreams.map((stream) => (
         <Video stream={stream} key={stream.id} />
-      ))} */}
+      ))}
     </MainContainer>
   );
 };
