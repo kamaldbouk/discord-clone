@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { styled } from "@mui/system";
-import SideBar from "./SideBar/SideBar";
+import Sidebar from "./SideBar/Sidebar";
 import FriendsSideBar from "./FriendsSideBar/FriendsSideBar";
 import Messenger from "./Messenger/Messenger";
 import AppBar from "./AppBar/AppBar";
@@ -30,7 +30,7 @@ const Dashboard = ({ setUserDetails, isUserInRoom }) => {
 
   return (
     <Wrapper>
-      <SideBar />
+      <Sidebar />
       <FriendsSideBar />
       <Messenger />
       <AppBar />
