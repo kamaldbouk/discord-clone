@@ -8,7 +8,6 @@ const MainContainer = styled("div")({
   position: "absolute",
   bottom: "10px",
   right: "10px",
-  height: 20
 });
 
 const ResizeRoomButton = ({ isRoomMinimized, handleRoomResize }) => {
