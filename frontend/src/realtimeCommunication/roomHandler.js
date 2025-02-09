@@ -1,11 +1,13 @@
 import store from "../store/store"
-import { setOpenRoom, setRoomDetails, setActiveRooms, setLocalStream, setRemoteStreams } from "../store/actions/roomActions";
+import { setOpenRoom, setRoomDetails, setActiveRooms, setLocalStream, setRemoteStreams, setScreenSharingStream, setIsUserJoinedOnlyWithAudio } from "../store/actions/roomActions";
 import * as socketConnection from './socketConnection';
 import * as webRTCHandler from './webRTCHandler';
 
 export const createNewRoom = () => {
   const successCallBackFunc = () => {
     store.dispatch(setOpenRoom(true, true));
+    const audioOnly = store.getState().room.audioOnly;
+    store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
     socketConnection.createNewRoom();
   }  
 
@@ -48,6 +50,8 @@ export const joinRoom = (roomId) => {
   const successCallBackFunc = () => {
     store.dispatch(setRoomDetails({ roomId }));
     store.dispatch(setOpenRoom(false, true));
+    const audioOnly = store.getState().room.audioOnly;
+    store.dispatch(setIsUserJoinedOnlyWithAudio(audioOnly));
     socketConnection.joinRoom({ roomId });
   };
 
@@ -65,6 +69,12 @@ export const leaveRoom = () => {
     store.dispatch(setLocalStream(null));
   }
 
+  const screenSharingStream = store.getState().room.screenSharingStream;
+  if (screenSharingStream) {
+    screenSharingStream.getTracks().forEach((track) => track.stop());
+    store.dispatch(setScreenSharingStream(null));
+  }
+
   store.dispatch(setRemoteStreams([]));
   webRTCHandler.closeAllConnections();
 
@@ -72,25 +82,3 @@ export const leaveRoom = () => {
   store.dispatch(setRoomDetails(null));
   store.dispatch(setOpenRoom(false, false));
 };
-
-// export const updateActiveRooms = (data) => {
-//     const { activeRooms } = data;
-
-
-//     const friends = store.getState().friends.friends;
-//     const rooms = [];
-//     console.log("Friends list:", friends);
-
-//     activeRooms.forEach((room) => {
-//        friends.forEach((f) => {
-//         if (f.id === room.roomCreator.userId) {
-//             console.log('x')
-//             rooms.push({ ...room, creatorUsername: f.username});
-//         }
-//        }); 
-//     });
-
-//     console.log("Filtered active rooms before dispatch:", rooms);
-
-//     store.dispatch(setActiveRooms(rooms));
-// }
